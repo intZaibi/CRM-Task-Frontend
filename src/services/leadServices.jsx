@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://crm-taskback.vercel.app/api';
+const API_BASE_URL = 'https://crm-task-backend-1.onrender.com/api';
 
 const getLeads = async () => {
   try {
