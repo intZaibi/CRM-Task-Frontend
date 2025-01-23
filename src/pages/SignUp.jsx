@@ -28,7 +28,7 @@ export default function SignUp() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/signUp", {
+      const response = await fetch("https://crm-taskback.vercel.app/api/users/signUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
