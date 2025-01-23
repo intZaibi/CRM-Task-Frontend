@@ -17,7 +17,7 @@ const SearchModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
-        <h2 className="text-2xl font-bold text-center mb-4">Edit Lead</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Search Lead</h2>
         <form onSubmit={handleSubmit}>
         <div className="mb-4">
             <label className="block font-bold mb-2">Name</label>
