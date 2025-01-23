@@ -14,7 +14,7 @@ const LeadsPage = () => {
   const verifyUserToken = async () => {
     try {
       // Fetch request to verify the token (adjust URL to your backend API)
-      const response = await fetch('https://crm-taskback.vercel.app/api/users', {
+      const response = await fetch('https://crm-task-backend-1.onrender.com/api/users', {
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
