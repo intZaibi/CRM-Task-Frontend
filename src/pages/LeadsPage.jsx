@@ -39,7 +39,7 @@ const LeadsPage = () => {
   
   useEffect(() => {
     // Call the function to verify the token when the component mounts
-    verifyUserToken();
+    // verifyUserToken();    commented because on deployement cookies are creating isssues. 
   }, []);
 
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
