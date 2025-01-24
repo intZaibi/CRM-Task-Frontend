@@ -20,7 +20,7 @@ const SearchModal = ({ onClose }) => {
         <h2 className="text-2xl font-bold text-center mb-4">Search Lead</h2>
         <form onSubmit={handleSubmit}>
         <div className="mb-4">
-            <label className="block font-bold mb-2">ID/label>
+            <label className="block font-bold mb-2">ID</label>
             <input
               type="text"
               value={id}
