@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createLead } from '../services/leadServices.jsx';
 
-const EditModal = ({ onClose }) => {
+const AddLeadModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -64,7 +64,7 @@ const EditModal = ({ onClose }) => {
     
     try {
       await createLead(formData); // Pass updated data to the parent component
-      onClose(); // Close the modal
+      onClose(true); // Close the modal
     } catch (error) {
       setError(error.message);
     }
@@ -147,4 +147,4 @@ const EditModal = ({ onClose }) => {
   );
 };
 
-export default EditModal;
+export default AddLeadModal;

@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 const LeadsPage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [leadsUpdated, setLeadsUpdated] = useState(false); // State to trigger rerender on modal close
 
   const router = useNavigate();
   
@@ -42,6 +43,13 @@ const LeadsPage = () => {
     // verifyUserToken();    commented because on deployement cookies are creating isssues. 
   }, []);
 
+  // Function to handle modal closing and trigger table/cards rerender
+  const handleModalClose = (bool) => {
+    setShowModal(false);
+    if(typeof bool !== "object") // if it returns a true then re-render
+    setLeadsUpdated(prev => !prev); // Toggle state to force re-render of table/cards
+  };
+
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   return (
@@ -55,13 +63,13 @@ const LeadsPage = () => {
       </button>
 
       {/* Cards for small screens */}
-      {isMobile && <Cards /> }
+      {isMobile && <Cards key={leadsUpdated} /> }
 
       {/* Table for large screens */}
-      {!isMobile && <Table />}
+      {!isMobile && <Table key={leadsUpdated} />}
 
       {/* Add Lead Modal */}
-      {showModal && <AddLeadModal onClose={()=>setShowModal(false)}/>}
+      {showModal && <AddLeadModal onClose={handleModalClose}/>}
 
     </div>
 
