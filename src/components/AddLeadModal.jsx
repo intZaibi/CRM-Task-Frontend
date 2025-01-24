@@ -141,7 +141,7 @@ const AddLeadModal = ({ onClose }) => {
               className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
             >
               {loading ? (
-                <span className="spinner-border animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
+                'Add Lead...'
               ) : (
                 'Add Lead'
               )}
