@@ -44,8 +44,9 @@ export default function Table() {
       fetchLeads(); // Refresh the list after deletion
     } catch (err) {
       console.error(err.message);
-    } finally 
+    } finally {
       setLoadingDelete(false);
+    }
   };
 
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
