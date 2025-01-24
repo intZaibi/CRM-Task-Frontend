@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://crm-task-backend-1.onrender.com/api';
+const API_BASE_URL = 'http://localhost:8000/api';
 
 const getLeads = async () => {
   try {
     
     const response = await axios.get(`${API_BASE_URL}/leads`);
+    console.log(response)
     return response.data;
   } catch (error) {
 

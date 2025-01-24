@@ -9,19 +9,51 @@ const EditModal = ({ onClose }) => {
     status: 'New',
   });
   const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [nameError, setNameError] = useState(null); // New state for name validation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (name === 'email') {
+      setEmailError(null); // Clear email error if the user is editing it
+    }
+    if (name === 'name') {
+      setNameError(null); // Clear name error when editing the name field
+    }
+  };
+
+  // Email validation function
+  const isValidEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
+  // Name validation function (checks for alphabetic characters and spaces only)
+  const isValidName = (name) => {
+    const regex = /^[A-Za-z\s]+$/; // This allows only letters and spaces
+    return regex.test(name.trim()); // Trim spaces and ensure it's valid
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if the email and name are valid
+    if (!isValidEmail(formData.email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+
+    if (!isValidName(formData.name)) {
+      setNameError('Name should only contain letters and spaces.');
+      return;
+    }
+
     try {
       await createLead(formData); // Pass updated data to the parent component
       onClose(); // Close the modal
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
     }
   };
 
@@ -41,6 +73,7 @@ const EditModal = ({ onClose }) => {
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
               required
             />
+            {nameError && <p className="text-red-500 text-sm">{nameError}</p>} {/* Show name error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Email</label>
@@ -52,6 +85,7 @@ const EditModal = ({ onClose }) => {
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
               required
             />
+            {emailError && <p className="text-red-500 text-sm">{emailError}</p>} {/* Show email error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Phone</label>
