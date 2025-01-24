@@ -38,7 +38,7 @@ const EditModal = ({ onClose }) => {
 
   // Phone validation function 
   const isValidPhone = (phone) => {
-    const regex = /^\+?[0-9]{1,13}$/;
+    const regex = /^\+?[0-9]{0,13}$/;
     return regex.test(phone);
   };
   
