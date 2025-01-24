@@ -39,8 +39,11 @@ const AddLeadModal = ({ onClose }) => {
 
   // Phone validation function 
   const isValidPhone = (phone) => {
+    if(phone.length !== 0){
     const regex = /^\+?[0-9]{11,13}$/;
     return regex.test(phone);
+    }
+    else return true; // for optional phone (true if empty)
   };
   
 
