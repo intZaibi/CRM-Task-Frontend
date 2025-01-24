@@ -17,8 +17,9 @@ const SearchModal = ({ onClose }) => {
         onClose(lead); // Close the modal and send lead to show in table
     } catch(err) {
       setError(err?.message);
-    } finally 
+    } finally {
         setLoading(false);
+    }
   };
 
   return (
