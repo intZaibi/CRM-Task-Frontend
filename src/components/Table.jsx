@@ -9,6 +9,7 @@ export default function Table() {
   const [showModal, setShowModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadingDelete, setLoadingDelete] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchLeads = async () => { // initially fetch all leads
@@ -37,9 +38,11 @@ export default function Table() {
   };
 
   const handleDelete = async (id) => { // Delete an specific lead by id
+    setLoadingDelete(true);
     try {
       await deleteLead(id);
       fetchLeads(); // Refresh the list after deletion
+      setLoadingDelete(false);
     } catch (err) {
       console.error(err.message);
     }
@@ -91,7 +94,7 @@ export default function Table() {
                     onClick={() => handleDelete(row._id)}
                     className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg cursor-pointer"
                   >
-                    Delete
+                    {loadingDelete ? 'Delete...' : 'Delete'}
                   </button>
                 </td>
                 
