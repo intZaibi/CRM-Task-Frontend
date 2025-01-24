@@ -71,8 +71,9 @@ const AddLeadModal = ({ onClose }) => {
       onClose(true); // Close the modal
     } catch (error) {
       setError(error.message);  
-    } finally 
+    } finally {
       setLoading(false);
+    }
   };
 
   return (
