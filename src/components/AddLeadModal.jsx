@@ -11,6 +11,7 @@ const EditModal = ({ onClose }) => {
   const [error, setError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [nameError, setNameError] = useState(null); // New state for name validation
+  const [phoneError, setPhoneError] = useState(null); // New state for name validation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,8 +33,15 @@ const EditModal = ({ onClose }) => {
   // Name validation function (checks for alphabetic characters and spaces only)
   const isValidName = (name) => {
     const regex = /^[A-Za-z\s]+$/; // This allows only letters and spaces
-    return regex.test(name.trim()); // Trim spaces and ensure it's valid
+    return regex.test(name.trim()); 
   };
+
+  // Phone validation function 
+  const isValidPhone = (phone) => {
+    const regex = /^\+?[0-9]{1,13}$/;
+    return regex.test(phone);
+  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +56,12 @@ const EditModal = ({ onClose }) => {
       setNameError('Name should only contain letters and spaces.');
       return;
     }
-
+    
+    if (!isValidPhone(formData.phone)) {
+      setPhoneError('Please enter a valid phone number.');
+      return;
+    }
+    
     try {
       await createLead(formData); // Pass updated data to the parent component
       onClose(); // Close the modal
@@ -96,6 +109,7 @@ const EditModal = ({ onClose }) => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
             />
+            {phoneError && <p className="text-red-500 text-sm">{phoneError}</p>} {/* Show name error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Status</label>

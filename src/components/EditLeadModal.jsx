@@ -1,5 +1,22 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
+// Email validation function
+const isValidEmail = (email) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+};
+
+// Phone validation function (checks for a valid phone number format, for example, 10 digits)
+const isValidPhone = (phone) => {
+  const regex = /^\+?[0-9]{1,13}$/; // Assuming a 10-digit phone number
+  return regex.test(phone);
+};
+
+// Name validation function (checks for alphabetic characters and spaces only)
+const isValidName = (name) => {
+  const regex = /^[A-Za-z\s]+$/;
+  return regex.test(name.trim());
+};
 
 const EditModal = ({ lead, onUpdate, onClose }) => {
   const [formData, setFormData] = useState({
@@ -9,13 +26,51 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
     status: lead.status,
   });
 
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    // Clear individual field errors on change
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let isValid = true;
+    const newErrors = { name: '', email: '', phone: '' };
+
+    // Validate Name
+    if (!isValidName(formData.name)) {
+      newErrors.name = 'Name should only contain letters and spaces.';
+      isValid = false;
+    }
+
+    // Validate Email
+    if (!isValidEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+      isValid = false;
+    }
+
+    // Validate Phone
+    if (formData.phone && !isValidPhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number.';
+      isValid = false;
+    }
+
+    // If any validation fails, update errors and return
+    if (!isValid) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Proceed to update the lead if all validations pass
     onUpdate(formData); // Pass updated data to the parent component
     onClose(); // Close the modal
   };
@@ -35,6 +90,7 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
               required
             />
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>} {/* Show name error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Email</label>
@@ -46,6 +102,7 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
               required
             />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>} {/* Show email error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Phone</label>
@@ -56,6 +113,7 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-lg px-4 py-2"
             />
+            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>} {/* Show phone error */}
           </div>
           <div className="mb-4">
             <label className="block font-bold mb-2">Status</label>
@@ -91,17 +149,6 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
       </div>
     </div>
   );
-};
-
-EditModal.propTypes = {
-  lead: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string,
-    status: PropTypes.string.isRequired,
-  }).isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
 
 export default EditModal;
