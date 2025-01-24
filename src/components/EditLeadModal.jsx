@@ -32,6 +32,8 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
     phone: '',
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -134,13 +136,13 @@ const EditModal = ({ lead, onUpdate, onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
+              className="bg-gray-300 text-gray-700 py-2 px-4 rounded cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
             >
               Update
             </button>
