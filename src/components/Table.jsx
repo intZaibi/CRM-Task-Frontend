@@ -42,9 +42,9 @@ export default function Table() {
     try {
       await deleteLead(id);
       fetchLeads(); // Refresh the list after deletion
+      setLoadingDelete(false);
     } catch (err) {
       console.error(err.message);
-    } finally {
       setLoadingDelete(false);
     }
   };
