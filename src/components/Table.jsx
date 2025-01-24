@@ -63,6 +63,7 @@ export default function Table() {
           
         <thead> 
           <tr className="bg-gray-100 text-left text-gray-700">
+            <th className="px-6 py-3 text-sm font-semibold">id</th>
             <th className="px-6 py-3 text-sm font-semibold">Name</th>
             <th className="px-6 py-3 text-sm font-semibold">Email</th>
             <th className="px-6 py-3 text-sm font-semibold">Phone</th>
@@ -77,7 +78,8 @@ export default function Table() {
             leads?.map((row) => {
               return (
               <tr key={row._id}>
-                <td className="px-6 py-4 text-sm text-gray-700">{row?.name}</td>
+                <td className="px-6 py-4 text-sm">{row?._id}</td>
+                <td className="px-6 py-4 text-sm">{row?.name}</td>
                 <td className="px-6 py-4 text-sm">{row?.email}</td>
                 <td className="px-6 py-4 text-sm">{row?.phone}</td>
                 <td className="px-6 py-4 text-sm">{row?.status}</td>
