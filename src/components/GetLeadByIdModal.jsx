@@ -12,9 +12,13 @@ const SearchModal = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const lead = await getLeadById(id);
-    setLoading(false);
-    onClose(lead); // Close the modal and send lead to show in table
+    try{
+        const lead = await getLeadById(id);
+        onClose(lead); // Close the modal and send lead to show in table
+    } catch(err) {
+      setError(err?.message);
+    } finally 
+        setLoading(false);
   };
 
   return (
