@@ -68,11 +68,11 @@ const AddLeadModal = ({ onClose }) => {
     setLoading(true);
     try {
       await createLead(formData); // Pass updated data to the parent component
-      setLoading(false);
       onClose(true); // Close the modal
     } catch (error) {
       setError(error.message);  
-    }
+    } finally 
+      setLoading(false);
   };
 
   return (
