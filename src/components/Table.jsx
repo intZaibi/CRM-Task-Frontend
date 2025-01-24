@@ -9,7 +9,7 @@ export default function Table() {
   const [showModal, setShowModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [loadingDelete, setLoadingDelete] = useState(true);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchLeads = async () => { // initially fetch all leads
