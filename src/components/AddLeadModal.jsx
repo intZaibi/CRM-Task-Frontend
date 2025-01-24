@@ -12,6 +12,7 @@ const AddLeadModal = ({ onClose }) => {
   const [emailError, setEmailError] = useState(null);
   const [nameError, setNameError] = useState(null); // New state for name validation
   const [phoneError, setPhoneError] = useState(null); // New state for name validation
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,12 +62,13 @@ const AddLeadModal = ({ onClose }) => {
       setPhoneError('Please enter a valid phone number.');
       return;
     }
-    
+    setLoading(true);
     try {
       await createLead(formData); // Pass updated data to the parent component
+      setLoading(false);
       onClose(true); // Close the modal
     } catch (error) {
-      setError(error.message);
+      setError(error.message);  
     }
   };
 
@@ -138,7 +140,11 @@ const AddLeadModal = ({ onClose }) => {
               type="submit"
               className="bg-blue-500 text-white py-2 px-4 rounded"
             >
-              Add Lead
+              {loading ? (
+                <span className="spinner-border animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
+              ) : (
+                'Add Lead'
+              )}
             </button>
           </div>
         </form>
