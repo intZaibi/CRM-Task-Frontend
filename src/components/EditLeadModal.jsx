@@ -8,7 +8,7 @@ const isValidEmail = (email) => {
 
 // Phone validation function (checks for a valid phone number format, for example, 10 digits)
 const isValidPhone = (phone) => {
-  const regex = /^\+?[0-9]{0,13}$/; // Assuming a 10-digit phone number
+  const regex = /^\+?[0-9]{11,13}$/; // Assuming a 11-digit phone number
   return regex.test(phone);
 };
 
