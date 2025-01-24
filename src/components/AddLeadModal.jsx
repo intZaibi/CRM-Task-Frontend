@@ -132,13 +132,13 @@ const AddLeadModal = ({ onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
+              className="bg-gray-300 text-gray-700 py-2 px-4 rounded cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
             >
               {loading ? (
                 <span className="spinner-border animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
