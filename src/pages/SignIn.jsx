@@ -104,7 +104,7 @@ export default function SignIn() {
               </div>
               <p className="text-gray-800 text-sm !mt-8 text-center">
                 Don't have an account?{' '}
-                <a href="signUp" className="text-[#00cc88] hover:underline ml-1 whitespace-nowrap font-semibold">
+                <a href="/signUp" className="text-[#00cc88] hover:underline ml-1 whitespace-nowrap font-semibold">
                   Register here
                 </a>
               </p>
