@@ -118,13 +118,18 @@ The application follows the MVC (Model-View-Controller) architecture:
    ```bash
    npm install
    ```
+   
+3. Create a `.env` file in the root folder and set the following environment variables:
+   ```env
+   BASE_URL=http://localhost:3000
+   ```
 
-3. Start the React development server:
+4. Start the React development server:
    ```bash
    npm start
    ```
 
-4. Open `http://localhost:3000` in your browser.
+5. Open `http://localhost:5173` in your browser.
 
 ---
 
