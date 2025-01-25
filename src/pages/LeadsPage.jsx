@@ -13,6 +13,7 @@ const LeadsPage = () => {
   
   // Function to fetch and verify the token
   const verifyUserToken = async () => {
+    console.log(Cookies.get('authToken'))
     try {
       // Fetch request to verify the token (adjust URL to your backend API)
       const response = await fetch('https://crm-task-backend-1.onrender.com/api/users', {
@@ -40,7 +41,7 @@ const LeadsPage = () => {
   
   useEffect(() => {
     // Call the function to verify the token when the component mounts
-    // verifyUserToken();   // commented because on deployement cookies are creating isssues. 
+    verifyUserToken();   // commented because on deployement cookies are creating isssues. 
   }, []);
 
   // Function to handle modal closing and trigger table/cards rerender
