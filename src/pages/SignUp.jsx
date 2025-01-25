@@ -28,7 +28,7 @@ export default function SignUp() {
     }
 
     try {
-      const response = await fetch("https://crm-task-backend-1.onrender.com/api/users/signUp", {
+      const response = await fetch(`${process.env.BACKEND_BASE_URL}/api/users/signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
