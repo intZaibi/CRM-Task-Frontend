@@ -16,7 +16,7 @@ const LeadsPage = () => {
     // console.log(Cookies.get('authToken'))
     try {
       // Fetch request to verify the token (adjust URL to your backend API)
-      const response = await fetch('https://crm-task-backend-1.onrender.com/api/users', {
+      const response = await fetch(`${process.env.BACKEND_BASE_URL}/api/users`, {
         method: 'GET',
         headers:{
           'Content-Type': 'application/json',
