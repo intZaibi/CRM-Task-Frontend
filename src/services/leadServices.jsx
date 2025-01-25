@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://crm-task-backend-1.onrender.com/api';
+const API_BASE_URL = `${process.env.BACKEND_BASE_URL}/api`;
 
 const getLeads = async () => {
   try {
