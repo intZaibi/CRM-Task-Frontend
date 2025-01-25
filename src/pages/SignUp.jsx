@@ -37,7 +37,7 @@ export default function SignUp() {
       });
 
       if (response.ok) {
-        router("/SignIn");
+        router("/signIn");
       } else {
         const data = await response.json();
         setError(data.error);
@@ -135,7 +135,7 @@ export default function SignUp() {
             <p className="text-gray-800 text-sm mt-6 text-center">
               Already have an account?{" "}
               <a
-                href="signIn"
+                href="/signIn"
                 className="text-[#00cc88] font-semibold hover:underline ml-1"
               >
                 Login here
