@@ -100,7 +100,7 @@ The application follows the MVC (Model-View-Controller) architecture:
    PORT=8000
    MONGODB_URI=mongodb://127.0.0.1:27017/crm_db
    JWT_SECRET=your_secret_key
-   FRONTEND_BASE_URL=http://localhost:3000
+   FRONTEND_BASE_URL=http://localhost:5173
    ```
 
 4. Start the server:
@@ -121,7 +121,7 @@ The application follows the MVC (Model-View-Controller) architecture:
    
 3. Create a `.env` file in the root folder and set the following environment variables:
    ```env
-   BASE_URL=http://localhost:3000
+   BACKEND_BASE_URL=http://localhost:8000
    ```
 
 4. Start the React development server:
