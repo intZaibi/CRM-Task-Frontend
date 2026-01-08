@@ -22,7 +22,7 @@ export default function SignIn() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.BACKEND_BASE_URL}/api/users/signIn`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/signIn`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

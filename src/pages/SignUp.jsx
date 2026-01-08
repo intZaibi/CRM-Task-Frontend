@@ -26,14 +26,14 @@ export default function SignUp() {
       setLoading(false);
       return;
     }
-
+    console.log(import.meta.env.VITE_BACKEND_BASE_URL)
     try {
-      const response = await fetch(`${process.env.BACKEND_BASE_URL}/api/users/signUp`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/api/users/signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...form }),
+        body: JSON.stringify({ ...form, name: form.fullName,  }),
       });
 
       if (response.ok) {
@@ -47,6 +47,7 @@ export default function SignUp() {
         }, 1500);
       }
     } catch (err) {
+      console.log(err)
       setError("An error occurred. Please try again.");
       setTimeout(() => {
         setError(null);

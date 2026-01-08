@@ -50,7 +50,7 @@ export default function Cards() {
   return (
     <>
     <button
-      className="bg-blue-500 text-white py-2 px-4 rounded mb-6 cursor-pointer"
+      className="bg-blue-500 text-white py-2 px-4 rounded mb-6 cursor-pointer "
       onClick={()=>setShowSearchModal(true)}
     >
       Get Lead By Id

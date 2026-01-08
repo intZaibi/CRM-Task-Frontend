@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = `${process.env.BACKEND_BASE_URL}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_BASE_URL}/api`;
 
 const getLeads = async () => {
   try {
     
-    const response = await axios.get(`${API_BASE_URL}/leads`);
+    const response = await axios.get(`${API_BASE_URL}/leads`, {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error) {
 
@@ -18,7 +20,9 @@ const getLeads = async () => {
 
 const getLeadById = async (id) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/leads/${id}`);
+    const response = await axios.get(`${API_BASE_URL}/leads/${id}`, {
+      withCredentials: true,
+    });
     return [response.data];
     
   } catch (error) {
@@ -33,7 +37,9 @@ const getLeadById = async (id) => {
 const createLead = async (lead) => {
   try {
     console.log(lead)
-    const response = await axios.post(`${API_BASE_URL}/leads`, lead);
+    const response = await axios.post(`${API_BASE_URL}/leads`, lead, {
+      withCredentials: true,
+    });
     return response.data;
 
   } catch (error) {
@@ -44,7 +50,9 @@ const createLead = async (lead) => {
 
 const updateLead = async (id, updatedLead) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/leads/${id}`, updatedLead);
+    const response = await axios.put(`${API_BASE_URL}/leads/${id}`, updatedLead, {
+      withCredentials: true,
+    });
     return response.data;
     
   } catch (error) {
@@ -55,7 +63,9 @@ const updateLead = async (id, updatedLead) => {
 
 const deleteLead = async (id) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/leads/${id}`);
+    const response = await axios.delete(`${API_BASE_URL}/leads/${id}`, {
+      withCredentials: true,
+    });
     return response.data;
     
   } catch (error) {
